@@ -41,6 +41,7 @@ def part_two(image_path):
             pixels[x, y] = (r_encrypted, g_encrypted, b_encrypted)
     image.save("encrypted_image.png")
     return "encrypted_image.png"
+
 def plot_histograms(original_image_path, encrypted_image_path, key=200, modulo=256):
         def get_histogram(image):
             pixels = list(image.getdata())
@@ -84,6 +85,7 @@ def plot_histograms(original_image_path, encrypted_image_path, key=200, modulo=2
                 axs[row, col].set_ylabel("Count")
         plt.tight_layout()
         plt.show()
+        return fig
 
 if __name__ == "__main__":
     encrypted_text = part_one("Hello World! 123")
@@ -123,7 +125,7 @@ if __name__ == "__main__":
 
     # Plot and save histograms
     plt.figure()
-    plot_histograms(path, encrypted_image_path)
+    fig = plot_histograms(path, encrypted_image_path)
     histogram_path = os.path.join(output_dir, "histograms.png")
-    plt.savefig(histogram_path)
+    fig.savefig(histogram_path)
     plt.close()
